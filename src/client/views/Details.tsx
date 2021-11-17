@@ -1,15 +1,39 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
+import type { IChirp } from '../utils/types'
 
-const Details: React.FC<DetailsProps> = props => {
+const Details: React.FC<DetailsProps> = () => {
 
     const { chirpid } = useParams();
+
+    const [chirp, setChirp] = React.useState<IChirp>({ id: chirpid, name: '', content: '' });
+
+    React.useEffect(() => {
+        (async () => {
+            const res = await fetch(`/api/chirps/${chirpid}`)
+            let chirp = await res.json();
+            setChirp(chirp)
+        }
+        )();
+    }, [])
 
     return (
         <main className="container">
             <section className="row my-2 justify-content-center">
-                <div className="col-md-6">
-                    <h1 className="text-center">Details View {chirpid}</h1>
+                <div className="col-md-12">
+                    <div className="card">
+                        <div className="card-body">
+                            <h4 className="card-title">
+                                @{chirp.name}
+                            </h4>
+                            <p className="card-text">
+                                {chirp.content}
+                            </p>
+                        </div>
+                        <div className="card-footer">
+                            <span className="text-muted">{chirp.id}</span>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>
