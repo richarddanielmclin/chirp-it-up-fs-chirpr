@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './views/Home';
 import Navbar from './components/Navbar';
 import Admin from './views/Admin';
 import Compose from './views/Compose';
 import Details from './views/Details';
-import Home from './views/Home';
 
 const App: React.FC<AppProps> = props => {
 	return (

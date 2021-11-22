@@ -6,12 +6,12 @@ const Details: React.FC<DetailsProps> = () => {
 
     const { chirpid } = useParams();
 
-    const [chirp, setChirp] = React.useState<IChirp>({ id: chirpid, name: '', content: '' });
+    const [chirp, setChirp] = React.useState<IChirp>({});
 
     React.useEffect(() => {
         (async () => {
             const res = await fetch(`/api/chirps/${chirpid}`)
-            let chirp = await res.json();
+            const chirp = await res.json();
             setChirp(chirp)
         }
         )();

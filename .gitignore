@@ -5,3 +5,4 @@ node_modules/
 dist/
 public/js/app.js
 .env
+server/db/index.ts
