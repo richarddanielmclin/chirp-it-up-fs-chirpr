@@ -19,7 +19,7 @@ const Admin: React.FC<AdminProps> = () => {
         })();
     }, []);
 
-    const handlePut = () => {
+    const handlePut = async (id: string, name: string, content: string) => {
         const requestOptions = {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -49,7 +49,7 @@ const Admin: React.FC<AdminProps> = () => {
                     <input type="text" placeholder={chirp.content} value={content} onChange={(e) => setContent(e.target.value)} />
                 </div>
                 <div className="row-12">
-                    <button onClick={() => handlePut()}>Update chirp</button>
+                    <button onClick={() => handlePut(chirp.id, chirp.name, chirp.content)} className="btn btn-">Update chirp</button>
                     <button onClick={() => handleDelete()}>Delete chirp</button>
                 </div>
             </div>
